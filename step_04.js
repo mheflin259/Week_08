@@ -20,10 +20,13 @@ app.get("/", (req, res) => {
 })
 
 app.post("/", (req, res) => {
-  let firstname = req.body.firstname
-  let lastname = req.body.lastname
-  let message = "Hello, " + firstname + " " + lastname
-  res.send(message)
+  let type = req.body.type
+  let number = req.body.number
+  let requestURL = "https://swapi.co/api/" + type + "/" + number + "/"
+  var request = new XMLHttpRequest();
+  request.open('GET', requestURL);
+  request.responseType = 'json';
+  request.send();
 })
 
 //  Start Express Web Server i.e. start listing on the port you defined
